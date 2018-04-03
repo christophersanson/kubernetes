@@ -1,12 +1,13 @@
 steps:
 - name: gcr.io/cloud-builders/bazel
+  args: ['version']
+- name: gcr.io/cloud-builders/bazel
   args: [
+    '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
     'test',
-    '//pkg/api/endpoints:go_default_test',
+    '//pkg/api/endpoints:go_default_test'
     # '//pkg/...'
   ]
-# - name: insready/bazel
-#   args: ['bazel', 'test', '//pkg/...']
 # timeout: 3600s
 # options: {
 #   machineType: N1_HIGHCPU_32
