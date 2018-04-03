@@ -16,10 +16,10 @@ steps:
     '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
     '--experimental_remote_spawn_cache',
     '--google_credentials=secrets.json',
-    '//pkg/api/endpoints:go_default_test'
-    # '//pkg/...'
+    # '//pkg/api/endpoints:go_default_test'
+    '//pkg/...'
   ]
-# timeout: 3600s
-# options: {
-#   machineType: N1_HIGHCPU_32
-# }
+timeout: 3600s
+options: {
+  machineType: N1_HIGHCPU_32
+}
