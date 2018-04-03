@@ -1,13 +1,13 @@
 steps:
-- name: gcr.io/cloud-builders/gcloud
-  args:
-    - kms
-    - decrypt
-    - --ciphertext-file=secrets.json.enc
-    - --plaintext-file=secrets.json
-    - --location=global
-    - --keyring=k8s
-    - --key=gcs
+# - name: gcr.io/cloud-builders/gcloud
+#   args:
+#     - kms
+#     - decrypt
+#     - --ciphertext-file=secrets.json.enc
+#     - --plaintext-file=secrets.json
+#     - --location=global
+#     - --keyring=k8s
+#     - --key=gcs
 - name: gcr.io/cloud-builders/bazel
   args: ['version']
 - name: gcr.io/cloud-builders/bazel
@@ -15,11 +15,10 @@ steps:
     'test',
     '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
     '--experimental_remote_spawn_cache',
-    '--google_credentials=secrets.json',
-    # '//pkg/api/endpoints:go_default_test'
+    # '--google_credentials=secrets.json',
     '//pkg/...'
   ]
 timeout: 3600s
-# options: {
-#   machineType: N1_HIGHCPU_32
-# }
+options: {
+  machineType: N1_HIGHCPU_32
+}
