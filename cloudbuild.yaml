@@ -1,7 +1,13 @@
 steps:
 - name: gcr.io/cloud-builders/bazel
-  args: ['test', '//...']
-timeout: 3600s
-options: {
-  machineType: N1_HIGHCPU_32
-}
+  args: [
+    'test',
+    '//pkg/api/endpoints:go_default_test',
+    # '//pkg/...'
+  ]
+# - name: insready/bazel
+#   args: ['bazel', 'test', '//pkg/...']
+# timeout: 3600s
+# options: {
+#   machineType: N1_HIGHCPU_32
+# }
