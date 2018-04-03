@@ -12,11 +12,11 @@ steps:
   args: ['version']
 - name: gcr.io/cloud-builders/bazel
   args: [
-    '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
-    --google_credentials=secrets.json
     'test',
-    '//pkg/api/endpoints:go_default_test'
-    # '//pkg/...'
+    '//pkg/api/endpoints:go_default_test',
+    # '//pkg/...',
+    '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
+    '--google_credentials=secrets.json'
   ]
 # timeout: 3600s
 # options: {
