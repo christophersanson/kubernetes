@@ -20,6 +20,6 @@ steps:
     '//pkg/...'
   ]
 timeout: 3600s
-options: {
-  machineType: N1_HIGHCPU_32
-}
+# options: {
+#   machineType: N1_HIGHCPU_32
+# }
