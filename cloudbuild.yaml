@@ -14,6 +14,7 @@ steps:
   args: [
     'test',
     '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
+    '--experimental_remote_spawn_cache',
     '--google_credentials=secrets.json',
     '//pkg/api/endpoints:go_default_test'
     # '//pkg/...'
