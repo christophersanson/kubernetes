@@ -28,6 +28,10 @@ steps:
       bazel \
         --host_jvm_args=-Dbazel.DigestFunction=SHA256 \
         test \
+        --remote_http_cache=https://storage.googleapis.com/btd-pm_k8s-bazel-cache \
+        --experimental_remote_spawn_cache \
+        --google_credentials=btd-pm-06b2f4ede903.json \
+        //pkg/... \
         --invocation_id=$uuid \
         --workspace_status_command= \
         --verbose_failures \
@@ -38,11 +42,7 @@ steps:
         --tls_enabled \
         --auth_enabled \
         --auth_scope=https://www.googleapis.com/auth/cloud-source-tools \
-        --project_id=btd-pm \
-        --remote_http_cache=https://storage.googleapis.com/btd-pm_k8s-bazel-cache \
-        --experimental_remote_spawn_cache \
-        --google_credentials=btd-pm-06b2f4ede903.json \
-        //pkg/...
+        --project_id=btd-pm
 # timeout: 3600s
 # options: {
 #   machineType: N1_HIGHCPU_32
