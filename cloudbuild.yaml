@@ -25,7 +25,7 @@ steps:
         --workspace_status_command= \
         --verbose_failures \
         --bes_backend=buildeventservice.googleapis.com \
-        --auth_credentials=.gcb/secrets/btd-pm-484a87b5c526.json \
+        --auth_credentials=btd-pm-484a87b5c526.json \
         --bes_best_effort=false \
         --bes_timeout=10s \
         --tls_enabled \
