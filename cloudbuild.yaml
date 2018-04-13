@@ -26,8 +26,8 @@ steps:
       uuid=$(cat /proc/sys/kernel/random/uuid)
       echo ResultStore URL: https://source.cloud.google.com/results/invocations/$uuid
       bazel \
-        test \
         --host_jvm_args=-Dbazel.DigestFunction=SHA256 \
+        test \
         --invocation_id=$uuid \
         --workspace_status_command= \
         --verbose_failures \
