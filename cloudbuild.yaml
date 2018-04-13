@@ -39,8 +39,6 @@ steps:
         --bes_best_effort=false \
         --bes_timeout=30s \
         --tls_enabled \
-        --auth_enabled \
-        --auth_scope=https://www.googleapis.com/auth/cloud-source-tools \
         --project_id=btd-pm
 # timeout: 3600s
 # options: {
