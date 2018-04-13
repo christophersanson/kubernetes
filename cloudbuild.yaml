@@ -8,8 +8,31 @@ steps:
     - --location=global
     - --keyring=k8s
     - --key=gcs
-- name: gcr.io/cloud-builders/bazel
-  args: ['version']
+# - name: gcr.io/cloud-builders/bazel
+#   args: ['version']
+- id: 'Bazel test'
+  name: gcr.io/cloud-builders/bazel
+  entrypoint: 'sh' #pass commands directly to shell
+  args: 
+    - '-c'
+    - |
+      uuid=$(cat /proc/sys/kernel/random/uuid)
+      echo ResultStore URL: https://source.cloud.google.com/results/invocations/$uuid
+      bazel \
+        --host_jvm_args=-Dbazel.DigestFunction=SHA256 \
+        test //pkg/... \
+        --invocation_id=$uuid \
+        --workspace_status_command= \
+        --verbose_failures \
+        --bes_backend=buildeventservice.googleapis.com \
+        --auth_credentials=.gcb/secrets/btd-pm-484a87b5c526.json \
+        --bes_best_effort=false \
+        --bes_timeout=10s \
+        --tls_enabled \
+        --auth_enabled \
+        --auth_scope=https://www.googleapis.com/auth/cloud-source-tools \
+        --project_id=btd-pm
+# timeout: 1800s
 # - name: gcr.io/cloud-builders/bazel
 #   args: [
 #     'test',
