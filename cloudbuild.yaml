@@ -3,13 +3,20 @@ steps:
   args:
     - kms
     - decrypt
-    - --ciphertext-file=btd-pm-484a87b5c526.json.enc
-    - --plaintext-file=btd-pm-484a87b5c526.json
+    - --ciphertext-file=btd-pm-06b2f4ede903.json.enc
+    - --plaintext-file=btd-pm-06b2f4ede903.json
     - --location=global
     - --keyring=k8s
     - --key=gcs
-# - name: gcr.io/cloud-builders/bazel
-#   args: ['version']
+- name: gcr.io/cloud-builders/gcloud
+  args:
+    - kms
+    - decrypt
+    - --ciphertext-file=btd-pm-be91d299e0a3.json.enc
+    - --plaintext-file=btd-pm-be91d299e0a3.json
+    - --location=global
+    - --keyring=k8s
+    - --key=gcs
 - id: 'Bazel test'
   name: gcr.io/cloud-builders/bazel
   entrypoint: 'sh' #pass commands directly to shell
@@ -25,7 +32,7 @@ steps:
         --workspace_status_command= \
         --verbose_failures \
         --bes_backend=buildeventservice.googleapis.com \
-        --auth_credentials=btd-pm-484a87b5c526.json \
+        --auth_credentials=btd-pm-06b2f4ede903.json \
         --bes_best_effort=false \
         --bes_timeout=30s \
         --tls_enabled \
@@ -34,17 +41,8 @@ steps:
         --project_id=btd-pm \
         --remote_http_cache=https://storage.googleapis.com/btd-pm_k8s-bazel-cache \
         --experimental_remote_spawn_cache \
-        --google_credentials=btd-pm-484a87b5c526.json
-# timeout: 1800s
-# - name: gcr.io/cloud-builders/bazel
-#   args: [
-#     'test',
-#     '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
-#     '--experimental_remote_spawn_cache',
-#     '--google_credentials=secrets.json',
-#     '//pkg/...'
-#   ]
-timeout: 3600s
-options: {
-  machineType: N1_HIGHCPU_32
-}
+        --google_credentials=btd-pm-be91d299e0a3.json
+# timeout: 3600s
+# options: {
+#   machineType: N1_HIGHCPU_32
+# }
