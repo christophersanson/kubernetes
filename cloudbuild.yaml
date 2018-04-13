@@ -41,8 +41,7 @@ steps:
 #     '--google_credentials=secrets.json',
 #     '//pkg/...'
 #   ]
-# timeout: 3600s
-# options: {
-#   machineType: N1_HIGHCPU_32
-# }
-
+timeout: 3600s
+options: {
+  machineType: N1_HIGHCPU_32
+}
