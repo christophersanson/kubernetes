@@ -41,7 +41,7 @@ steps:
         --project_id=btd-pm \
         --remote_http_cache=https://storage.googleapis.com/btd-pm_k8s-bazel-cache \
         --experimental_remote_spawn_cache \
-        --google_credentials=btd-pm-06b2f4ede903.json
+        --google_credentials=btd-pm-be91d299e0a3.json
 # timeout: 3600s
 # options: {
 #   machineType: N1_HIGHCPU_32
