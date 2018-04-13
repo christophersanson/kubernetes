@@ -8,15 +8,6 @@ steps:
     - --location=global
     - --keyring=k8s
     - --key=gcs
-# - name: gcr.io/cloud-builders/gcloud
-#   args:
-#     - kms
-#     - decrypt
-#     - --ciphertext-file=btd-pm-be91d299e0a3.json.enc
-#     - --plaintext-file=btd-pm-be91d299e0a3.json
-#     - --location=global
-#     - --keyring=k8s
-#     - --key=gcs
 - id: 'Bazel test'
   name: gcr.io/cloud-builders/bazel
   entrypoint: 'sh' #pass commands directly to shell
@@ -40,8 +31,8 @@ steps:
         --bes_timeout=30s \
         --tls_enabled \
         --project_id=btd-pm
-# timeout: 3600s
-# options: {
-#   machineType: N1_HIGHCPU_32
-# }
+timeout: 1800s
+options: {
+  machineType: N1_HIGHCPU_32
+}
 
