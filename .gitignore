@@ -126,4 +126,4 @@ zz_generated.openapi.go
 /bazel-*
 *.pyc
 
-secrets.json
+btd-pm-484a87b5c526.json

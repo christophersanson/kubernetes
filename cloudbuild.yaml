@@ -3,21 +3,21 @@ steps:
   args:
     - kms
     - decrypt
-    - --ciphertext-file=secrets.json.enc
-    - --plaintext-file=secrets.json
+    - --ciphertext-file=btd-pm-484a87b5c526.json.enc
+    - --plaintext-file=btd-pm-484a87b5c526.json
     - --location=global
     - --keyring=k8s
     - --key=gcs
 - name: gcr.io/cloud-builders/bazel
   args: ['version']
-- name: gcr.io/cloud-builders/bazel
-  args: [
-    'test',
-    '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
-    '--experimental_remote_spawn_cache',
-    '--google_credentials=secrets.json',
-    '//pkg/...'
-  ]
+# - name: gcr.io/cloud-builders/bazel
+#   args: [
+#     'test',
+#     '--remote_http_cache=https://storage.googleapis.com/bazel-cache-cs',
+#     '--experimental_remote_spawn_cache',
+#     '--google_credentials=secrets.json',
+#     '//pkg/...'
+#   ]
 # timeout: 3600s
 # options: {
 #   machineType: N1_HIGHCPU_32
