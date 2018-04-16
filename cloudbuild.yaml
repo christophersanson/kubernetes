@@ -9,6 +9,7 @@ steps:
     - --keyring=k8s
     - --key=gcs
 
+
 - id: 'Bazel test with Results UI'
   name: gcr.io/cloud-builders/bazel
   entrypoint: 'sh' #pass commands directly to shell
