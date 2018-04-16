@@ -8,29 +8,8 @@ steps:
     - --location=global
     - --keyring=k8s
     - --key=gcs
-# - id: 'Bazel test'
-#   name: gcr.io/cloud-builders/bazel
-#   entrypoint: 'sh' #pass commands directly to shell
-#   args: 
-#     - '-c'
-#     - |
-#       uuid=$(cat /proc/sys/kernel/random/uuid)
-#       echo ResultStore URL: https://source.cloud.google.com/results/invocations/$uuid
-#       bazel \
-#         --host_jvm_args=-Dbazel.DigestFunction=SHA256 \
-#         test //pkg/... \
-#         --invocation_id=$uuid \
-#         --workspace_status_command= \
-#         --verbose_failures \
-#         --bes_backend=buildeventservice.googleapis.com \
-#         --auth_credentials=btd-pm-06b2f4ede903.json \
-#         --bes_best_effort=false \
-#         --bes_timeout=10s \
-#         --tls_enabled \
-#         --auth_enabled \
-#         --auth_scope=https://www.googleapis.com/auth/cloud-source-tools \
-#         --project_id=btd-pm
-- id: 'Bazel test'
+
+- id: 'Bazel test with Results UI'
   name: gcr.io/cloud-builders/bazel
   entrypoint: 'sh' #pass commands directly to shell
   args: 
@@ -39,11 +18,35 @@ steps:
       uuid=$(cat /proc/sys/kernel/random/uuid)
       echo ResultStore URL: https://source.cloud.google.com/results/invocations/$uuid
       bazel \
-      test \
-      --remote_http_cache=https://storage.googleapis.com/btd-pm_k8s-bazel-cache \
-      --experimental_remote_spawn_cache \
-      --google_credentials=btd-pm-06b2f4ede903.json \
-      //pkg/...
+        --host_jvm_args=-Dbazel.DigestFunction=SHA256 \
+        test //pkg/... \
+        --invocation_id=$uuid \
+        --workspace_status_command= \
+        --verbose_failures \
+        --bes_backend=buildeventservice.googleapis.com \
+        --auth_credentials=btd-pm-06b2f4ede903.json \
+        --bes_best_effort=false \
+        --bes_timeout=10s \
+        --tls_enabled \
+        --auth_enabled \
+        --auth_scope=https://www.googleapis.com/auth/cloud-source-tools \
+        --project_id=btd-pm
+
+# - id: 'Bazel test with Cache'
+#   name: gcr.io/cloud-builders/bazel
+#   entrypoint: 'sh' #pass commands directly to shell
+#   args: 
+#     - '-c'
+#     - |
+#       uuid=$(cat /proc/sys/kernel/random/uuid)
+#       echo ResultStore URL: https://source.cloud.google.com/results/invocations/$uuid
+#       bazel \
+#       test \
+#       --remote_http_cache=https://storage.googleapis.com/btd-pm_k8s-bazel-cache \
+#       --experimental_remote_spawn_cache \
+#       --google_credentials=btd-pm-06b2f4ede903.json \
+#       //pkg/...
+
 # timeout: 1800s
 # options: {
 #   machineType: N1_HIGHCPU_32
