@@ -39,6 +39,7 @@ steps:
       uuid=$(cat /proc/sys/kernel/random/uuid)
       echo ResultStore URL: https://source.cloud.google.com/results/invocations/$uuid
       bazel \
+      test \
       --remote_http_cache=https://storage.googleapis.com/btd-pm_k8s-bazel-cache \
       --experimental_remote_spawn_cache \
       --google_credentials=btd-pm-06b2f4ede903.json \
